@@ -5,6 +5,7 @@ var dotenv = require("dotenv");
 dotenv.config();
 
 var app = express();
+console.log(process.env.PORT);
 var port = process.env.PORT || 3000;
 
 app.use(
