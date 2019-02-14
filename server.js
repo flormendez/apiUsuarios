@@ -1,3 +1,5 @@
+//Configuración del servidor
+
 var app = require("./app");
 
 var port = app.get("port"); //obtengo el puerto
