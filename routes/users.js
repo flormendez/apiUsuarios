@@ -3,6 +3,7 @@ var controller = require("../controller/usersController");
 
 var ctl = new controller();
 var router = express.Router();
+
 //Usuarios
 
 router.get("/", ctl.getAll);

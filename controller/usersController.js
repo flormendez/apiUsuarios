@@ -1,11 +1,15 @@
 var service = require("../services/users");
 
-function controller() {
-  this.getAll = function(req, res) {
-    service.getAll(req, res);
+var srv = new service();
+
+function Controller() {
+  this.getAll = async (req, res) => {
+    //siempre que pongo un async entiendo que la funcion retorna una promesa
+    var result = await srv.getAll();
+    res.status(200).send(JSON.stringify(result));
   };
 
-  this.getById = function(req, res) {
+  this.getById = (req, res) => {
     var id = req.body.id;
 
     if (!id) {
@@ -15,22 +19,22 @@ function controller() {
     service.getById(id);
   };
 
-  this.post = function(req, res) {
-    service.post(req.body);
+  this.post = (req, res) => {
+    srv.post(req.body);
   };
 
-  this.put = function(req, res) {
-    service.put(req.body);
+  this.put = (req, res) => {
+    srv.put(req.body);
   };
 
-  this.deleteById = function(req, res) {
+  this.deleteById = (req, res) => {
     var id = req.body.id;
 
     if (!id) {
       res.status(404).send("Usuario no encontrado");
       return;
     }
-    service.getById(id);
+    srv.getById(id);
   };
 }
-module.exports = controller;
+module.exports = Controller;
